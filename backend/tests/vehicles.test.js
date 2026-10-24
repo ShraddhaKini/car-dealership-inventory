@@ -54,6 +54,7 @@ describe('Vehicles API', () => {
       ['an empty model', { model: '   ' }],
       ['a missing category', { category: undefined }],
       ['a negative price', { price: -1 }],
+      ['a price above 10 million', { price: 10000001 }],
       ['a non-numeric price', { price: '20000' }],
       ['a missing quantity', { quantity: undefined }],
       ['a fractional quantity', { quantity: 1.5 }],
