@@ -1,7 +1,7 @@
 const { ValidationError } = require('../errors');
 
 const MAX_TEXT_LENGTH = 100;
-
+   const MAX_PRICE = 10000000;
 const validateText = (field) => (value) => {
   if (typeof value !== 'string' || value.trim() === '') {
     throw new ValidationError(`${field} must be a non-empty string`);
@@ -16,9 +16,9 @@ const validatePrice = (value) => {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
     throw new ValidationError('price must be a number greater than or equal to 0');
   }
-  if (value > 10000000) {
-    throw new ValidationError('price must not exceed 10000000');
-  }
+       if (value > MAX_PRICE) {
+       throw new ValidationError(`price must not exceed ${MAX_PRICE}`);
+     }
   return value;
 };
 
