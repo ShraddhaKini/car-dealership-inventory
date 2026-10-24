@@ -1,0 +1,33 @@
+{
+  "name": "dealership-backend",
+  "version": "1.0.0",
+  "description": "REST API for the Car Dealership Inventory System",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed:admin": "node src/seedAdmin.js",
+    "test": "jest --coverage --runInBand",
+    "test:report": "jest --coverage --runInBand --verbose > test-report.txt 2>&1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "supertest": "^7.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"],
+    "collectCoverageFrom": ["src/**/*.js", "!src/server.js", "!src/seedAdmin.js"]
+  }
+}
