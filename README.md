@@ -127,103 +127,104 @@ Tests run against a real SQLite file created in a temporary directory for every 
 PASS tests/vehicles.test.js
   Vehicles API
     POST /api/vehicles
-      √ adds a vehicle with a unique id (217 ms)
-      √ trims text fields (66 ms)
-      √ rejects a missing make with 400 (63 ms)
-      √ rejects an empty model with 400 (58 ms)
+      √ adds a vehicle with a unique id (218 ms)
+      √ trims text fields (71 ms)
+      √ rejects a missing make with 400 (61 ms)
+      √ rejects an empty model with 400 (59 ms)
       √ rejects a missing category with 400 (58 ms)
-      √ rejects a negative price with 400 (59 ms)
-      √ rejects a non-numeric price with 400 (63 ms)
-      √ rejects a missing quantity with 400 (63 ms)
-      √ rejects a fractional quantity with 400 (56 ms)
+      √ rejects a negative price with 400 (60 ms)
+      √ rejects a price above 10 million with 400 (58 ms)
+      √ rejects a non-numeric price with 400 (56 ms)
+      √ rejects a missing quantity with 400 (56 ms)
+      √ rejects a fractional quantity with 400 (58 ms)
       √ rejects a negative quantity with 400 (55 ms)
-      √ rejects an over-long make with 400 (54 ms)
-      √ rejects a request without a body with 400 (53 ms)
-      √ rejects unauthenticated requests with 401 (52 ms)
+      √ rejects an over-long make with 400 (56 ms)
+      √ rejects a request without a body with 400 (57 ms)
+      √ rejects unauthenticated requests with 401 (56 ms)
     GET /api/vehicles
-      √ returns an empty list when nothing has been added (54 ms)
-      √ returns every vehicle, including those out of stock (73 ms)
+      √ returns an empty list when nothing has been added (56 ms)
+      √ returns every vehicle, including those out of stock (75 ms)
     GET /api/vehicles/search
       √ returns all vehicles when no filter is given (89 ms)
-      √ filters by make, case-insensitively and partially (92 ms)
-      √ filters by model (90 ms)
-      √ filters by category, case-insensitively (90 ms)
-      √ filters by an inclusive price range (87 ms)
-      √ filters by minPrice only (88 ms)
-      √ filters by maxPrice only (85 ms)
-      √ combines filters (92 ms)
-      √ returns an empty list when nothing matches (97 ms)
-      √ treats SQL wildcards in input literally (95 ms)
-      √ ignores blank filters (91 ms)
-      √ rejects a non-numeric minPrice with 400 (87 ms)
-      √ rejects a negative maxPrice with 400 (89 ms)
-      √ rejects minPrice greater than maxPrice with 400 (88 ms)
-      √ rejects a repeated make parameter with 400 (89 ms)
-      √ requires authentication (92 ms)
+      √ filters by make, case-insensitively and partially (89 ms)
+      √ filters by model (92 ms)
+      √ filters by category, case-insensitively (89 ms)
+      √ filters by an inclusive price range (89 ms)
+      √ filters by minPrice only (87 ms)
+      √ filters by maxPrice only (87 ms)
+      √ combines filters (85 ms)
+      √ returns an empty list when nothing matches (92 ms)
+      √ treats SQL wildcards in input literally (90 ms)
+      √ ignores blank filters (85 ms)
+      √ rejects a non-numeric minPrice with 400 (84 ms)
+      √ rejects a negative maxPrice with 400 (85 ms)
+      √ rejects minPrice greater than maxPrice with 400 (84 ms)
+      √ rejects a repeated make parameter with 400 (87 ms)
+      √ requires authentication (88 ms)
     PUT /api/vehicles/:id
-      √ updates the supplied fields and keeps the rest (76 ms)
-      √ returns 404 for an unknown vehicle (63 ms)
-      √ returns 400 for an invalid id (65 ms)
-      √ returns 400 for invalid data (68 ms)
-      √ returns 400 when no updatable field is provided (69 ms)
+      √ updates the supplied fields and keeps the rest (71 ms)
+      √ returns 404 for an unknown vehicle (54 ms)
+      √ returns 400 for an invalid id (55 ms)
+      √ returns 400 for invalid data (65 ms)
+      √ returns 400 when no updatable field is provided (66 ms)
     DELETE /api/vehicles/:id
-      √ lets an admin delete a vehicle (80 ms)
-      √ forbids a regular user with 403 (66 ms)
-      √ returns 404 for an unknown vehicle (52 ms)
-      √ returns 401 without a token (54 ms)
+      √ lets an admin delete a vehicle (74 ms)
+      √ forbids a regular user with 403 (65 ms)
+      √ returns 404 for an unknown vehicle (56 ms)
+      √ returns 401 without a token (53 ms)
 
 PASS tests/inventory.test.js
   Inventory API
     POST /api/vehicles/:id/purchase
-      √ decreases the quantity by one by default (123 ms)
-      √ decreases the quantity by the requested amount (79 ms)
+      √ decreases the quantity by one by default (96 ms)
+      √ decreases the quantity by the requested amount (73 ms)
       √ allows buying the last unit (72 ms)
-      √ returns 409 when the vehicle is out of stock (69 ms)
-      √ returns 409 and leaves stock untouched when asking for more than available (70 ms)
-      √ rejects quantity 0 with 400 (65 ms)
+      √ returns 409 when the vehicle is out of stock (63 ms)
+      √ returns 409 and leaves stock untouched when asking for more than available (71 ms)
+      √ rejects quantity 0 with 400 (66 ms)
       √ rejects quantity -1 with 400 (68 ms)
-      √ rejects quantity 1.5 with 400 (72 ms)
-      √ rejects quantity "2" with 400 (68 ms)
-      √ returns 404 for an unknown vehicle (56 ms)
-      √ returns 400 for an invalid id (52 ms)
+      √ rejects quantity 1.5 with 400 (63 ms)
+      √ rejects quantity "2" with 400 (65 ms)
+      √ returns 404 for an unknown vehicle (55 ms)
+      √ returns 400 for an invalid id (54 ms)
       √ requires authentication (53 ms)
     POST /api/vehicles/:id/restock
       √ lets an admin increase the quantity (70 ms)
-      √ forbids a regular user with 403 (63 ms)
-      √ rejects quantity undefined with 400 (62 ms)
+      √ forbids a regular user with 403 (65 ms)
+      √ rejects quantity undefined with 400 (65 ms)
       √ rejects quantity 0 with 400 (64 ms)
-      √ rejects quantity -4 with 400 (66 ms)
-      √ rejects quantity 2.5 with 400 (69 ms)
-      √ returns 404 for an unknown vehicle (55 ms)
-      √ requires authentication (58 ms)
+      √ rejects quantity -4 with 400 (65 ms)
+      √ rejects quantity 2.5 with 400 (68 ms)
+      √ returns 404 for an unknown vehicle (56 ms)
+      √ requires authentication (53 ms)
 
 PASS tests/auth.test.js
   Auth API
-    √ returns 404 JSON for unknown routes (21 ms)
+    √ returns 404 JSON for unknown routes (20 ms)
     POST /api/auth/register
-      √ creates a user and never returns the password (63 ms)
-      √ ignores a role supplied by the client (30 ms)
-      √ rejects a duplicate email with 409 (33 ms)
-      √ rejects an invalid email with 400 (21 ms)
-      √ rejects a missing email with 400 (20 ms)
-      √ rejects a short password with 400 (22 ms)
-      √ rejects a missing password with 400 (21 ms)
+      √ creates a user and never returns the password (73 ms)
+      √ ignores a role supplied by the client (35 ms)
+      √ rejects a duplicate email with 409 (35 ms)
+      √ rejects an invalid email with 400 (22 ms)
+      √ rejects a missing email with 400 (21 ms)
+      √ rejects a short password with 400 (21 ms)
+      √ rejects a missing password with 400 (20 ms)
       √ rejects a request without a body with 400 (21 ms)
-      √ rejects malformed JSON with 400 (23 ms)
+      √ rejects malformed JSON with 400 (31 ms)
     POST /api/auth/login
       √ returns a token and the public user for valid credentials (38 ms)
-      √ rejects a wrong password with 401 (36 ms)
-      √ rejects an unknown email with 401 (35 ms)
+      √ rejects a wrong password with 401 (37 ms)
+      √ rejects an unknown email with 401 (36 ms)
       √ rejects a missing password with 400 (34 ms)
     token protection
-      √ rejects requests without a token (21 ms)
-      √ rejects requests with an invalid token (80 ms)
-      √ accepts requests with a valid token (41 ms)
+      √ rejects requests without a token (20 ms)
+      √ rejects requests with an invalid token (20 ms)
+      √ accepts requests with a valid token (42 ms)
 
 -----------------------|---------|----------|---------|---------|-------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
-All files              |   96.52 |       82 |     100 |   96.36 |                   
+All files              |   96.56 |    82.23 |     100 |    96.4 |                   
  src                   |   88.88 |        0 |     100 |   88.88 |                   
   app.js               |     100 |      100 |     100 |     100 |                   
   config.js            |       0 |        0 |     100 |       0 | 1-8               
@@ -241,14 +242,14 @@ All files              |   96.52 |       82 |     100 |   96.36 |
  src/services          |     100 |    94.11 |     100 |     100 |                   
   authService.js       |     100 |    88.88 |     100 |     100 | 12                
   vehicleService.js    |     100 |      100 |     100 |     100 |                   
- src/validators        |   98.64 |    96.34 |     100 |    98.5 |                   
+ src/validators        |    98.7 |    96.42 |     100 |   98.57 |                   
   authValidator.js     |   92.85 |    94.44 |     100 |   92.85 | 9                 
-  vehicleValidator.js  |     100 |    96.87 |     100 |     100 | 80,93             
+  vehicleValidator.js  |     100 |    96.96 |     100 |     100 | 83,96             
 -----------------------|---------|----------|---------|---------|-------------------
 Test Suites: 3 passed, 3 total
-Tests:       77 passed, 77 total
+Tests:       78 passed, 78 total
 Snapshots:   0 total
-Time:        7.595 s, estimated 8 s
+Time:        7.155 s, estimated 8 s
 Ran all test suites.
 
 ```
