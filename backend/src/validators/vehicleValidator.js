@@ -16,6 +16,9 @@ const validatePrice = (value) => {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
     throw new ValidationError('price must be a number greater than or equal to 0');
   }
+  if (value > 10000000) {
+    throw new ValidationError('price must not exceed 10000000');
+  }
   return value;
 };
 
